@@ -16,4 +16,4 @@ widget.show()
 sys.exit(app.exec_())
 
 
-# This is from MaximusAy12
+# This is from MaximusAy127
