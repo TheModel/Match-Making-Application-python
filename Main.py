@@ -16,8 +16,4 @@ widget.show()
 sys.exit(app.exec_())
 
 
-# THIS MAXIMUS AND I WROTE THIS COMMENT
-
-#THERE ARE A LOT OF THINGS TO DEAL WITH MAN
-
-# I made this Change in my phone
+# This is from MaximusAy12
