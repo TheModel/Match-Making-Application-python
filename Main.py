@@ -19,8 +19,6 @@ widget.show()
 sys.exit(app.exec_())
 
 
-# THIS MAXIMUS AND I WROTE THIS COMMENT
+# This is from MaximusAy127
 
-#THERE ARE A LOT OF THINGS TO DEAL WITH MAN
-
-# I made this Change in my phone
+# There are a lot of things I still need to know about github for real.
