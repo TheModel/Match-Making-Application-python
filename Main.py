@@ -14,3 +14,6 @@ widget.setFixedHeight(800)
 widget.setFixedWidth(1200)
 widget.show()
 sys.exit(app.exec_())
+
+
+# THIS MAXIMUS AND I WROTE THIS COMMENT
