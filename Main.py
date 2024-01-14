@@ -9,14 +9,7 @@ from welcome import WelcomeScreen
 #RIEN POUR TOI MAN
 
 
-app = QApplication(sys.argv)
-widget = QStackedWidget()
-welcomewindow = WelcomeScreen(widget)
-widget.addWidget(welcomewindow)
-widget.setFixedHeight(800)
-widget.setFixedWidth(1200)
-widget.show()
-sys.exit(app.exec_())
+
 
 
 # This is from MaximusAy127
