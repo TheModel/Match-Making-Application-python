@@ -1,0 +1,7 @@
+<RCC>
+  <qresource prefix="Myimages">
+    <file>OIG.jpeg</file>
+    <file>side-view-woman-silhouette (1).png</file>
+  </qresource>
+  <qresource prefix="newPrefix"/>
+</RCC>
