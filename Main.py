@@ -5,7 +5,7 @@ from welcome import WelcomeScreen
 ##########################################
 ##  RUNNING THE APPLICATION             ##
 ##########################################
-
+#RIEN POUR TOI MAN
 app = QApplication(sys.argv)
 widget = QStackedWidget()
 welcomewindow = WelcomeScreen(widget)
@@ -21,5 +21,3 @@ sys.exit(app.exec_())
 #THERE ARE A LOT OF THINGS TO DEAL WITH MAN
 
 # I made this Change in my phone
-
-# This change here was made by MaximusAy
