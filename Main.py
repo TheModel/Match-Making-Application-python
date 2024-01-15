@@ -12,8 +12,4 @@ from welcome import WelcomeScreen
 
 
 
-# This is from MaximusAy127
-
-# There are a lot of things I still need to know about github for real.
-
-#Really this is some parallel code or something.
+# This is Maximus
