@@ -149,3 +149,7 @@ class CreateAccountScreen(QMainWindow):
             mainpage.setUserProfile()
             self.widget.addWidget(mainpage)
             self.widget.setCurrentIndex(self.widget.currentIndex() + 1)
+
+
+
+#This is the mainpage and that is what I am doing.
