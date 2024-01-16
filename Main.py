@@ -15,3 +15,5 @@ widget.setFixedWidth(1200)
 widget.show()
 sys.exit(app.exec_())
 
+#This is just some idea that I have
+
