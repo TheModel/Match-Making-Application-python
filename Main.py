@@ -6,7 +6,7 @@ from welcome import WelcomeScreen
 ##  RUNNING THE APPLICATION             ##
 ##########################################
 
-app = QApplication(sys.argv)
+app = QApplication(sys.argv)  yuertjhr
 widget = QStackedWidget()
 welcomewindow = WelcomeScreen(widget)
 widget.addWidget(welcomewindow)
@@ -15,9 +15,8 @@ widget.setFixedWidth(1200)
 widget.show()
 sys.exit(app.exec_())
 
-
+#this is Anthony 
 #This is a modification
-#This is my second modification
 
 
 
