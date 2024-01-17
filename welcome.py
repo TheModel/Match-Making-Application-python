@@ -1,5 +1,4 @@
 #Welcome.py
-import sys
 from PyQt5.QtWidgets import QMainWindow, QStackedWidget, QApplication
 from PyQt5.uic import loadUi
 from login import LoginScreen
