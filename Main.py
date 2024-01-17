@@ -17,8 +17,6 @@ sys.exit(app.exec_())
 
 #this is kizer
 
-if num>0:
-    
 
 
 
