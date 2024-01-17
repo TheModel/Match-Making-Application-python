@@ -63,7 +63,34 @@ class MainScreen(QMainWindow):
     ###########################################################################################
  
     def setUserProfile(self):
-        pass
+        try:
+            conn=sqlite3.connect("userInfo.db")
+            cursor=conn.cursor()
+            cursor.execute('''SELECT Username,Password,Age,Email,Location,Phone Number,Gender,Image
+                           FROM Users
+                           WHERE Username=?''',(self.username,))
+            user_data=cursor.fetchone()
+            conn.close()
+            
+            if user_data:
+                self.username, self.password, self.age, self.email, self.location, self.phonenumber, self.gender, image_data = user_data
+         
+                 
+                pixmap = QPixmap()
+                pixmap.loadFromData(image_data)
+                self.user_image = pixmap
+                self.Account_image_Input.setPixmap(pixmap)
+         
+                self.Account_username_Input.setText(self.username)
+                self.Account_password_Input.setText(self.password)
+                self.Account_age_Input.setText(str(self.age))
+                self.Account_email_Input.setText(self.email)
+                self.Account_location_Input.setText(self.location)
+                self.Account_Phone_number_Input.setText(str(self.phonenumber))
+                self.Account_gender_Input.setText(self.gender)
+ 
+        except Exception as e:
+           QMessageBox.critical(self, "Error", f"Failed to fetch user profile: {str(e)}")
 
     ######################################################################################################
     ##                    FUNCTION THAT ALLOWS USER TO UPDATE HIS PROFILE PICTURE                       ##
