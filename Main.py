@@ -6,7 +6,7 @@ from welcome import WelcomeScreen
 ##  RUNNING THE APPLICATION             ##
 ##########################################
 
-app = QApplication(sys.argv)  yuertjhr
+app = QApplication(sys.argv)  #yuertjhr
 widget = QStackedWidget()
 welcomewindow = WelcomeScreen(widget)
 widget.addWidget(welcomewindow)
