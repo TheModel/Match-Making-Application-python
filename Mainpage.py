@@ -113,30 +113,7 @@ class MainScreen(QMainWindow):
     #####################################################################################################
 
     def viewSuggestions(self):
-        try:
-            conn=sqlite3.connect("usersInfo.db")
-            cur=conn.cursor()
-            sql_query="SELECT Image,Username,Age,Location,Gender FROM Users WHEREUsername !=? LIMIT 10"
-            rows=cur.execute(sql_query, (self.username)).fetchall()
-            self.tablewidget.setRowCount(len(rows))
-            for i, row in enumerate(rows):
-                image_data=row[0]
-                pixmap=QPixmap()
-                pixmap.loadFromData(image_data)
-                label=QtWidgets.Qlabel()
-                label.setPixmap(pixmap.scaled(100,100))
-                label.setAlignment(QtCore.Qt.AlignCenter)
-                self.tableWidget.setRowHeight(i, 120)
-                self.tableWidget.setCellWidget(i, 0, label)
-                for j in range(1, len(row)):
-                    item=Qtwidgets.QTableWidgetItem(str(row[j]))
-                    item.setTextAlignment(QtCore.Qt.AlignCenter)
-                    self.table Widget.setItem(i, j, item)
-              conn.close()
-
-        except Exception as e:
-            QMessageBox.critical(self, "Error", f"Failed to view suggestions: {str(e)}")
-        
+        pass
     #############################################################################################################
     ##        FUNCTION THAT ALLOWS YOU TO LOAD A USERS PROFILE ON THE OTHER PROFILES PAGE FROM THE DATA BASE   ##
     #####################################################################################################
@@ -162,45 +139,46 @@ class MainScreen(QMainWindow):
     #####################################################################################################
 
     def saveEvent(self):
-        pass
-        event_name = self.event_name_line_edit.text()
-        start_time = self.Start_time_edit.time().toString()
-        end_time = self.End_time_edit.time().toString()
-        description = self.Description_text_edit.toPlainText()
-        # Get the date set on the calendar
-        event_date = self.event_date_edit.text()
-        #Get the Get the username of the logged-in user
-        username= self.username
-#Establishing a connection to the SQLite database named "Event.db"
-    conn=sqlite3.connect("Event.db")
-#Creating a cursor object to interact with the database
-    cursor=conn.cursor()
-#Creating the Events table if it does not exist
-    cursor.execute('''
-    CREATE TABLE IF NOT EXISTS Events(
-    EventID INTEGER PRIMARY KEY AUTOINCREMENT,
-    EventName TEXT,
-    StartTime TEXT,
-    EndTime TEXT,
-    Description TEXT,
-    EventDate TEXT,
-    Username TEXT,
-    )
-    ''')
-#Insert the event details into the Event table
-    cursor.execute('''
-      INSERT INTO Events (EventName, StartTime, EndTime, Description, EventDate, Username)
-      VALUES (?,?,?,?,?,?)
-      ''', (event_name,start_time,end_time,description,event_date,username))
-#Commit the changes to the database
-    conn.commit()
-#Close the database connection to free up resources
-    conn.close
-#Displays a success message to the user
-    QMessageBox.information(self,"Success","Event saved successfully!")
-except Exception as e:
-#Handle any exceptions that might occur during the process and display an error message
-QMessageBox.critical(self,"Error",f"Failed to save event:{str(e)}")
+        try:
+            
+            event_name = self.event_name_line_edit.text()
+            start_time = self.Start_time_edit.time().toString()
+            end_time = self.End_time_edit.time().toString()
+            description = self.Description_text_edit.toPlainText()
+        
+            event_date = self.event_date_edit.text()
+        
+            username= self.username
+
+            conn=sqlite3.connect("Event.db")
+
+            cursor=conn.cursor()
+            cursor.execute('''
+   
+            CREATE TABLE IF NOT EXISTS Events(
+            EventID INTEGER PRIMARY KEY AUTOINCREMENT,
+            EventName TEXT,
+            StartTime TEXT,
+            EndTime TEXT,
+            Description TEXT,
+            EventDate TEXT,
+            Username TEXT,
+             )
+             ''')
+
+            cursor.execute('''
+            INSERT INTO Events (EventName, StartTime, EndTime, Description, EventDate, Username)
+            VALUES (?,?,?,?,?,?)
+            ''', (event_name,start_time,end_time,description,event_date,username))
+
+            conn.commit()
+
+            conn.close
+    
+            QMessageBox.information(self,"Success","Event saved successfully!")
+        except Exception as e:
+
+            QMessageBox.critical(self,"Error",f"Failed to save event:{str(e)}")
 
         
     
