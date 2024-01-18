@@ -139,36 +139,37 @@ class MainScreen(QMainWindow):
     #####################################################################################################
 
     def saveEvent(self):
-        try:
             
-            event_name = self.event_name_line_edit.text()
-            start_time = self.Start_time_edit.time().toString()
-            end_time = self.End_time_edit.time().toString()
-            description = self.Description_text_edit.toPlainText()
+        event_name = self.event_name_line_edit.text()
+        start_time = self.Start_time_edit.time().toString()
+        end_time = self.End_time_edit.time().toString()
+        description = self.Description_text_edit.toPlainText()
         
-            event_date = self.event_date_edit.text()
+        event_date = self.event_date_edit.text()
         
-            username= self.username
+        username= self.username
+
+        try:
 
             conn=sqlite3.connect("Event.db")
 
             cursor=conn.cursor()
             cursor.execute('''
    
-            CREATE TABLE IF NOT EXISTS Events(
-            EventID INTEGER PRIMARY KEY AUTOINCREMENT,
-            EventName TEXT,
-            StartTime TEXT,
-            EndTime TEXT,
-            Description TEXT,
-            EventDate TEXT,
-            Username TEXT,
-             )
+              CREATE TABLE IF NOT EXISTS Events(
+                EventID INTEGER PRIMARY KEY AUTOINCREMENT,
+                EventName TEXT,
+                StartTime TEXT,
+                EndTime TEXT,
+                Description TEXT,
+                EventDate TEXT,
+                Username TEXT,
+               )
              ''')
 
             cursor.execute('''
-            INSERT INTO Events (EventName, StartTime, EndTime, Description, EventDate, Username)
-            VALUES (?,?,?,?,?,?)
+              INSERT INTO Events (EventName, StartTime, EndTime, Description, EventDate, Username)
+              VALUES (?,?,?,?,?,?)
             ''', (event_name,start_time,end_time,description,event_date,username))
 
             conn.commit()
