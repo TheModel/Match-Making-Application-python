@@ -34,20 +34,17 @@ class LoginScreen(QMainWindow):
     #####################################################################################
 
     def checkInputFields(self, username, password):
-       try:
-        if not username or not password:
-            if not username:
-                self.login_error_label.setText("Username is required!")
-            elif not password:
-                self.login_error_label.setText("Password is required!")
-
+        try:
+            if not username or not password:
+                if not username:
+                    self.login_error_label.setText("Username is required!")
+                elif not password:
+                    self.login_error_label.setText("Password is required!")
+                    return False
+                return True
+        except Exception as e:
+            print(f"Error in checkInputFields method: {str(e)}")
             return False
-
-        return True
-
-    except Exception as e:
-    print(f"Error in checkInputFields method: {str(e)}")
-    return False
 
     #####################################################################################
     ##                  LOGIN FUNCTION THAT LEADS TO THE MAINPAGE                      ##
