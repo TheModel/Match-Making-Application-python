@@ -22,62 +22,49 @@ class CreateAccountScreen(QMainWindow):
 
         ## BUTTTON TO UPLOAD A PICTURE ###
         self.Upload_Picture_button.clicked.connect(self.uploadImage)
-
+        
     #########################################################################################
     ##      METHOD THAT VERIFIES IF THE USERNAME THE USER IS ENTERING IS NOT YET TAKEN     ##
     #########################################################################################
     def isUsernameTaken(self, username):
         
-    try:
-        # Step 1: Establish a connection to the SQLite database named "usersInfo.db"
-        conn = sqlite3.connect("usersInfo.db")
+        try:
+            conn = sqlite3.connect("usersInfo.db")
+            cursor = conn.cursor()
+            cursor.execute("SELECT Username FROM Users WHERE Username = ?", (username,))
+            result = cursor.fetchone()
+            conn.close()
+            return result is not None
+       except Exception as e:
+            print(f"Error checking username existence: {str(e)}")
+             return False
 
-        # Step 2: Create a cursor object to interact with the database
-        cursor = conn.cursor()
-
-        # Step 3: Execute an SQL query to check if the username already exists in the Users table
-        cursor.execute("SELECT Username FROM Users WHERE Username = ?", (username,))
         
-        # Step 4: Fetch the result of the query
-        result = cursor.fetchone()
-
-        # Step 5: Close the database connection to free up resources
-        conn.close()
-
-        # Step 6: Return True if the username exists, False otherwise
-        return result is not None
-
-    except Exception as e:
-        # Step 7: Handle any exceptions that might occur during the process and return False
-        print(f"Error checking username existence: {str(e)}")
-        return False
-
-        pass
 
 
     ########################################################################################
     ##     METHOD TO CHECK IF THE USER INFO IS ENTERED IN THE CORRECT FORMAT              ##
     ########################################################################################
     def CheckInfo(self, username, email, password, age, phonenumber, location, gender):
-        pass
+      pass
     
     #############################################################################################
     ##      METHOD THAT STORES USER INFO IN THE DATABASE AFTER VALIDATION                      ##
     #############################################################################################
 
     def storeInDataBase(self, username, email, password, age, phonenumber, location,gender, image_path):
-        pass
-
+      pass
     ##############################################################################################
     ##        METHOD THAT ALLOWS USER TO UPLOAD AN IMAGE FOR HIS PROFILE                        ##
     ##############################################################################################
 
     def uploadImage(self):
-        pass
+      pass
 
     ####################################################################################################
     ##    THE FINAL SUBMIT BUTTON THAT VERIFIES ALL THE OTHER METHODS, THEN MOVES TO THE MAINPAGE     ##
     ####################################################################################################
 
     def Submit(self):
-        pass
+      pass
+
