@@ -34,7 +34,7 @@ class LoginScreen(QMainWindow):
     #####################################################################################
 
     def checkInputFields(self, username, password):
-        try:
+        try:   
             if not username or not password:
                 if not username:
                     self.login_error_label.setText("Username is required!")
