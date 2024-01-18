@@ -140,6 +140,47 @@ class MainScreen(QMainWindow):
 
     def saveEvent(self):
         pass
+        event_name = self.event_name_line_edit.text()
+        start_time = self.Start_time_edit.time().toString()
+        end_time = self.End_time_edit.time().toString()
+        description = self.Description_text_edit.toPlainText()
+        # Get the date set on the calendar
+        event_date = self.event_date_edit.text()
+        #Get the Get the username of the logged-in user
+        username= self.username
+#Establishing a connection to the SQLite database named "Event.db"
+    conn=sqlite3.connect("Event.db")
+#Creating a cursor object to interact with the database
+    cursor=conn.cursor()
+#Creating the Events table if it does not exist
+    cursor.execute('''
+    CREATE TABLE IF NOT EXISTS Events(
+    EventID INTEGER PRIMARY KEY AUTOINCREMENT,
+    EventName TEXT,
+    StartTime TEXT,
+    EndTime TEXT,
+    Description TEXT,
+    EventDate TEXT,
+    Username TEXT,
+    )
+    ''')
+#Insert the event details into the Event table
+    cursor.execute('''
+      INSERT INTO Events (EventName, StartTime, EndTime, Description, EventDate, Username)
+      VALUES (?,?,?,?,?,?)
+      ''', (event_name,start_time,end_time,description,event_date,username))
+#Commit the changes to the database
+    conn.commit()
+#Close the database connection to free up resources
+    conn.close
+#Displays a success message to the user
+    QMessageBox.information(self,"Success","Event saved successfully!")
+except Exception as e:
+#Handle any exceptions that might occur during the process and display an error message
+QMessageBox.critical(self,"Error",f"Failed to save event:{str(e)}")
+
+        
+    
 
     #####################################################################################################
     ##     FUNCTION THAT ALLOWS USER TO SET THE EVENT FIELDS FOR A SPECIFIC USER FROM THE DATABASE     ##
