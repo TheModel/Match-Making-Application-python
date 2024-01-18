@@ -15,9 +15,6 @@ widget.setFixedWidth(1200)
 widget.show()
 sys.exit(app.exec_())
 
-#this is kizer
-
-#this is yannick
 
 
 
