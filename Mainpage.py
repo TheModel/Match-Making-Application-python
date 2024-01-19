@@ -113,31 +113,7 @@ class MainScreen(QMainWindow):
     #####################################################################################################
 
     def viewSuggestions(self):
-        try:
-            conn=sqlite3.connect("UserInfo.db")
-            cur=conn.cursor()
-            sql_query="SELECT Image,Username,Age,Location,Gender FROM Users WHERE Username!=? Limit 10"
-            rows=cur.execute(sql_query,(self.Username)).fetchall()
-            self.tableWidget.setRowCount(len(rows))
-            for i, row in enumerate(rows):
-          QPixmap
-            image_data=row[0]
-            pixmap=QPixmap()
-            pixmap.loadFFROMData(image_data)
-            label=QtWidgets.QLabel()
-            label.setPixmap(pixmap.scaled(100,100))
-            label.setAlignement(QtCore.Qt.AlignCenter)
-            self.tableWidget.setRowHeight(i,120)
-            self.tableWidget.setCellWidget(i,0,label)
-            for j in range(1,len(row)):
-                item=QtWidgets.QTableWidgetItem(str(row[j]))
-                item.setTextAlignment(QtCore.Qt.AlignCenter)
-                self.tableWidget.setItem(i,j,item)
-         conn.close()
-
-except Exception as e:
- QMessageBox.critical(self,"Error",f"Failed to view suggestions:{str(e)}")
- 
+        pass
     #############################################################################################################
     ##        FUNCTION THAT ALLOWS YOU TO LOAD A USERS PROFILE ON THE OTHER PROFILES PAGE FROM THE DATA BASE   ##
     #####################################################################################################
@@ -158,22 +134,24 @@ except Exception as e:
     def previousUser(self):
         pass
 
-    #####################################################################################################
-    ##        FUNCTION THAT ALLOWS USER TO SAVE AN EVENT IN THE EVENT PAGE                             ##
-    #####################################################################################################
-
+  
     def saveEvent(self):
-            
+        self.calendarWidget.selectedDate()
         event_name = self.event_name_line_edit.text()
         start_time = self.Start_time_edit.time().toString()
         end_time = self.End_time_edit.time().toString()
         description = self.Description_text_edit.toPlainText()
-        
+        self.event_date_edit.setDate
         event_date = self.event_date_edit.text()
         
         username= self.username
+        
+        self.event_name_line_edit.clear()
+        self.Start_time_edit.clear()
+        self.End_time_edit.clear()
+        self.Description_text_edit.clear()
 
-        try:
+        
 
             conn=sqlite3.connect("Event.db")
 
@@ -195,7 +173,7 @@ except Exception as e:
               INSERT INTO Events (EventName, StartTime, EndTime, Description, EventDate, Username)
               VALUES (?,?,?,?,?,?)
             ''', (event_name,start_time,end_time,description,event_date,username))
-
+        self.loadEvent()
             conn.commit()
 
             conn.close
