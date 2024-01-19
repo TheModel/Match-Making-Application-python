@@ -35,9 +35,9 @@ class CreateAccountScreen(QMainWindow):
             result = cursor.fetchone()
             conn.close()
             return result is not None
-       except Exception as e:
+        except Exception as e:
             print(f"Error checking username existence: {str(e)}")
-             return False
+            return False
 
         
 
