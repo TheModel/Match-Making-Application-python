@@ -113,7 +113,31 @@ class MainScreen(QMainWindow):
     #####################################################################################################
 
     def viewSuggestions(self):
-        pass
+        try:
+            conn=sqlite3.connect("UserInfo.db")
+            cur=conn.cursor()
+            sql_query="SELECT Image,Username,Age,Location,Gender FROM Users WHERE Username!=? Limit 10"
+            rows=cur.execute(sql_query,(self.Username)).fetchall()
+            self.tableWidget.setRowCount(len(rows))
+            for i, row in enumerate(rows):
+          QPixmap
+            image_data=row[0]
+            pixmap=QPixmap()
+            pixmap.loadFFROMData(image_data)
+            label=QtWidgets.QLabel()
+            label.setPixmap(pixmap.scaled(100,100))
+            label.setAlignement(QtCore.Qt.AlignCenter)
+            self.tableWidget.setRowHeight(i,120)
+            self.tableWidget.setCellWidget(i,0,label)
+            for j in range(1,len(row)):
+                item=QtWidgets.QTableWidgetItem(str(row[j]))
+                item.setTextAlignment(QtCore.Qt.AlignCenter)
+                self.tableWidget.setItem(i,j,item)
+         conn.close()
+
+except Exception as e:
+ QMessageBox.critical(self,"Error",f"Failed to view suggestions:{str(e)}")
+ 
     #############################################################################################################
     ##        FUNCTION THAT ALLOWS YOU TO LOAD A USERS PROFILE ON THE OTHER PROFILES PAGE FROM THE DATA BASE   ##
     #####################################################################################################
